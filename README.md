@@ -44,10 +44,8 @@ If you need to build your own version, below the steps to build RTTOV and the Py
 	...f2py detected: do you want to compile the Python wrapper and RTTOV GUI? (y/n)
 	> y
 
-	===========================
-	 RTTOV COMPILATION SUMMARY 
-	===========================
-
+	RTTOV COMPILATION SUMMARY 
+	
 	Compiling with flags           : gfortran-openmp
 	Compiling in directory         : ./
 
@@ -79,10 +77,8 @@ If you need to build your own version, below the steps to build RTTOV and the Py
 
    $ cd ../wrapper
    $ python pyrttov_visirscatt_example.py
-
-##########################
-# Additional requirements 
-##########################
+   
+Additional requirements
 
 Mandatory for RTTOV-SCATT:
 in the directory 'rtcoef_rttov13/hydrotable' the hydrotable*.dat file must be available for the specific MW sensor (e.g. hydrotable_gcom-w_amsr2.dat). 
