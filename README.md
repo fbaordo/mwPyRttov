@@ -78,7 +78,7 @@ If you need to build your own version, below the steps to build RTTOV and the Py
    $ cd ../wrapper
    $ python pyrttov_visirscatt_example.py
    
-Additional requirements
+# Additional requirements
 
 Mandatory for RTTOV-SCATT:
 in the directory 'rtcoef_rttov13/hydrotable' the hydrotable*.dat file must be available for the specific MW sensor (e.g. hydrotable_gcom-w_amsr2.dat). 
@@ -86,3 +86,34 @@ hydrotable*.dat files can be downloaded from https://nwp-saf.eumetsat.int/site/s
 
 Optional: to use the MW surface emissivity atlas (RTTOV must be build including the HDF5 library).
 TELSEM atlas data must be located in the directory 'emis_data' and they can be downloaded from https://nwp-saf.eumetsat.int/site/software/rttov/download
+
+# How to run
+As an example to use this framework you can have a look at run_mw_rttov13v0.py or example_run_rttov.ipynb. 
+Generally what you need:
+
+-  The Python wrapper build as described above
+-  The RTTOV rttov_wrapper_f2py.so library must be in your $PYTHONPATH
+-  NWP data (1D vector), interpolated at the satellite location
+-  You can choose to run RTTOV or RTTOV-SCATT for AMSR2 or SSMIS
+-  mw_rttov_cfg.py: some parameters to configure for RTTOV (here you may also add addiitonal satellite)  
+-  What you get after runing the run_rttov function:
+  For each selected sensor's channel:
+    
+	simTb:       simulated brightness temperature
+
+	simTb_noAtm: (This was implemented for the SIC algorithm) simulated brightness temperature with no Atm (e.g.: u10=0, v10=0, profQ=0, profCLWC=0, profCIWC=0, profCRWC=0, profCSWC=0, profCC=0)
+
+	surfEmis:    surface emissivty used in the radiative transfer calculations
+
+	strChsList:  list of channels (string that identifies GHz + pol)
+
+	emis_param_dict: internal RTTOV data structure
+
+	RTTOV-SCATT
+
+		{'EmisTermsDownCld','EmisTermsUpCld','EmisTermsTauCld','EmisTermsDownClr','EmisTermsUpClr','EmisTermsTauClr','EmisTermsBsfc','EmisTermsCfrac'}
+   
+  	RTTOV
+   
+    		{'Rad2Down','Rad2Up','Rad2DnClear','Rad2UpClear','Rad2Surf','Rad2ReflDnClear'}
+
